@@ -20,7 +20,7 @@
         <header>
             <h1>Privacy Policy / Datenschutzerklärung</h1>
             <p><strong>for “AI Artist Skipper”</strong><br>
-                <em>Last updated: <strong>July 25, 2025 – Revision R3.1</strong></em>
+                <em>Last updated: <strong>July 25, 2025 - Revision R3.2</strong></em>
             </p>
         </header>
 
@@ -38,19 +38,19 @@
                     <li><a href="#spotify-consent">Spotify SDK Loading &amp; Consent</a></li>
                     <li><a href="#retention">Data Retention Summary</a></li>
                     <li><a href="#legal-bases">Legal Bases Overview</a></li>
-                    <li><a href="#rights">Your Rights (Art. 15–21 GDPR)</a></li>
+                    <li><a href="#rights">Your Rights (Art. 15-21 GDPR)</a></li>
                     <li><a href="#adm">Automated Decision-Making &amp; Profiling</a></li>
                     <li><a href="#toms">Technical &amp; Organisational Measures (TOMs)</a></li>
                     <li><a href="#minors">Protection of Minors</a></li>
                     <li><a href="#contact-inquiries">Contact Inquiries &amp; Retention</a></li>
-                    <li><a href="#annex-a">Annex A – Cookies &amp; Local Storage Objects</a></li>
+                    <li><a href="#annex-a">Annex A - Cookies &amp; Local Storage Objects</a></li>
                     <li><a href="#key-takeaways">Key Takeaways</a></li>
                 </ol>
             </nav>
 
             <section>
                 <blockquote>
-                    <strong>Important – No Legal Advice:</strong> This document fulfils the transparency obligations of
+                    <strong>Important - No Legal Advice:</strong> This document fulfils the transparency obligations of
                     Art. 13 GDPR. It does <strong>not</strong> constitute individual legal advice.
                 </blockquote>
 
@@ -70,10 +70,11 @@
                 <hr>
 
                 <h2 id="purpose">2. Purpose &amp; Privacy by Design</h2>
-                <p>AI Artist Skipper lets you skip tracks by a curated list of presumed AI-generated artists on Spotify.
-                    By design, <strong>we do not process or store any personal user data on our servers</strong>. All
-                    Spotify-related interactions take place entirely in your browser (<em>Privacy by Design</em>, Art.
-                    25 GDPR).</p>
+                <p>AI Artist Skipper lets you skip tracks by a curated list of presumed AI-generated artists on
+                    Spotify. By design, <strong>we do not process or store any personal user data on our
+                        servers</strong>.
+                    All Spotify-related interactions take place entirely in your browser (<em>Privacy by
+                        Design</em>, Art. 25 GDPR).</p>
 
                 <hr>
 
@@ -129,7 +130,7 @@
                                 <td>Submitted artist name &amp; Spotify ID</td>
                                 <td>MySQL (Germany)</td>
                                 <td>Until removed/updated</td>
-                                <td>Operating our community list.</td>
+                                <td>Operating our community list. Artists can request removal at any time.</td>
                             </tr>
                             <tr>
                                 <td><strong>“Song of the Day”</strong></td>
@@ -163,9 +164,10 @@
 
                 <h3>A) Frontend (Browser)</h3>
                 <ul>
-                    <li><strong>OAuth PKCE Flow:</strong> You enter your Spotify Client ID; a <code>code_verifier</code>
-                        is generated locally. The OAuth exchange happens directly between your browser and Spotify; we
-                        never see or store your tokens.</li>
+                    <li><strong>OAuth PKCE Flow:</strong> You enter your Spotify Client ID; a
+                        <code>code_verifier</code> is generated locally. The OAuth exchange happens directly between
+                        your browser and Spotify; we never see or store your tokens.
+                    </li>
                     <li><strong>Playback Calls:</strong> Made straight from your browser to the Spotify Web API.</li>
                     <li><strong>API Calls:</strong> <code>GET /api/artists</code> (no personal data) and
                         <code>POST /api/submit</code> (artist name + Spotify ID).
@@ -202,17 +204,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Spotify AB</strong> (Sweden / Global) – independent controller</td>
+                                <td><strong>Spotify AB</strong> (Sweden / Global) - independent controller</td>
                                 <td>OAuth &amp; playback</td>
-                                <td>Tokens and playback commands exchanged <strong>only</strong> between your browser
-                                    and Spotify</td>
+                                <td>Tokens and playback commands exchanged <strong>only</strong> between your
+                                    browser and Spotify</td>
                                 <td>Art. 6 (1)(b) GDPR (contract performance) &amp; § 25 TTDSG; Art. 6 (1)(f) GDPR
                                     (service functionality)</td>
                                 <td>SCCs &amp; adequacy decisions (see Section 8 A)</td>
                                 <td>Controlled by Spotify</td>
                             </tr>
                             <tr>
-                                <td><strong>Papoo Software &amp; Media GmbH</strong> (Germany) – processor</td>
+                                <td><strong>Papoo Software &amp; Media GmbH</strong> (Germany) - processor</td>
                                 <td>Consent management (ccm19)</td>
                                 <td>Consent cookies &amp; logs</td>
                                 <td>Art. 6 (1)(a) GDPR; § 25 TTDSG</td>
@@ -220,7 +222,7 @@
                                 <td>13 months</td>
                             </tr>
                             <tr>
-                                <td><strong>Uberspace GmbH</strong> (Germany) – processor</td>
+                                <td><strong>Uberspace GmbH</strong> (Germany) - processor</td>
                                 <td>Hosting &amp; database</td>
                                 <td>Pseudonymised host logs</td>
                                 <td>Art. 6 (1)(f) GDPR</td>
@@ -228,19 +230,32 @@
                                 <td>≤ 7 days</td>
                             </tr>
                             <tr>
-                                <td><strong>Google LLC</strong> (USA) – independent controller</td>
+                                <td><strong>Google LLC</strong> (USA) - independent controller</td>
                                 <td>Handling and archiving support e-mails (Gmail)</td>
                                 <td>Sender+recipient address, timestamp, IP metadata, mail content, attachments</td>
                                 <td>Art. 6 (1)(f) GDPR (communication &amp; record-keeping)</td>
-                                <td><strong>EU–US Data Privacy Framework (DPF)</strong> &amp; <strong>Standard
+                                <td><strong>EU-US Data Privacy Framework (DPF)</strong> &amp; <strong>Standard
                                         Contractual Clauses (SCCs)</strong> plus encryption in transit and at rest</td>
                                 <td>Up to 3 years after last correspondence</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PayPal (Europe) S.à r.l. et Cie, S.C.A.</strong> (Luxembourg/USA) -
+                                    independent controller</td>
+                                <td>Processing donations via PayPal.me link</td>
+                                <td>When you donate via the PayPal.me link, PayPal processes the data you provide (e.g.
+                                    name, e-mail address and payment details). We receive only a notification of your
+                                    donation and no financial details.</td>
+                                <td>Art. 6 (1)(b) GDPR (contract performance - donation) &amp;
+                                    Art. 6 (1)(f) GDPR (supporting the service)</td>
+                                <td>EU-US DPF and SCCs; PayPal's own privacy policies</td>
+                                <td>Controlled by PayPal; we do not store payment details</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <p>Empfängerkategorien i. S. v. Art. 13 Abs. 1 lit. e DSGVO: Hosting-Provider,
-                    Consent-Management-Provider, Musik-Streaming-Dienste, Kommunikations-Dienstleister.</p>
+                    Consent-Management-Provider, Musik-Streaming-Dienste, Kommunikations-Dienstleister,
+                    Zahlungs-Dienstleister.</p>
                 <p>Auftragsverarbeitungsverträge (AVVs) bestehen mit Uberspace und Papoo; Kopien sind auf Anfrage
                     erhältlich.</p>
 
@@ -248,14 +263,15 @@
 
                 <h2 id="cookies">7. Cookies, Local Storage &amp; Consent Management</h2>
                 <p>We use <strong>ccm19</strong> to collect and store your cookie preferences. You can revisit them at
-                    any time via the <strong>“Cookie Settings”</strong> link in the footer (Art. 7 (3) GDPR – withdrawal
+                    any time via the <strong>“Cookie Settings”</strong> link in the footer (Art. 7 (3) GDPR - withdrawal
                     must be as easy as consent).</p>
                 <ul>
                     <li><strong>Necessary cookies/local storage objects</strong> are set under § 25 (2) No. 2 TTDSG
                         because they are technically required to provide the service (e.g. OAuth tokens to maintain the
                         current playback session).</li>
                     <li><strong>Functionality cookies</strong> (Spotify Web Playback SDK) load only after you grant
-                        “Functionality” consent.</li>
+                        “Functionality” consent. When you donate via PayPal, you leave our site; PayPal's own cookies
+                        and privacy notices apply there.</li>
                 </ul>
                 <p>Details and lifetimes are available in <strong>Annex A</strong> at the end of this document.</p>
 
@@ -265,7 +281,7 @@
 
                 <h3>A) Spotify Web API</h3>
                 <p>Spotify may process personal data (e.g. IP address, tokens) on servers outside the EEA. According to
-                    Spotify’s Privacy Policy, transfers rely on:</p>
+                    Spotify's Privacy Policy, transfers rely on:</p>
                 <ul>
                     <li><strong>Standard Contractual Clauses (SCCs)</strong> approved by the European Commission,</li>
                     <li><strong>Adequacy decisions</strong> (Japan, Canada, South Korea, UK, Switzerland) and</li>
@@ -276,10 +292,16 @@
                 <p>Google LLC processes support e-mails on global infrastructure (incl. the USA). Transfers are covered
                     by:</p>
                 <ul>
-                    <li>The <strong>EU–US Data Privacy Framework (DPF)</strong>, and</li>
+                    <li>The <strong>EU-US Data Privacy Framework (DPF)</strong>, and</li>
                     <li>The <strong>SCCs</strong> for any other locations.<br>
-                        You can request a copy of Google’s SCCs at any time.</li>
+                        You can request a copy of Google's SCCs at any time.</li>
                 </ul>
+
+                <h3>C) PayPal Donations</h3>
+                <p>When you follow our <em>paypal.me</em> link to donate, your transaction is processed by
+                    PayPal (Europe) S.à r.l. et Cie or its affiliated entities. PayPal may transfer data outside the
+                    EEA under the EU-US DPF and SCCs. Please refer to PayPal's privacy statement for details. We do not
+                    receive your payment details.</p>
 
                 <hr>
 
@@ -301,7 +323,8 @@
                         <tbody>
                             <tr>
                                 <td>Artist data &amp; submissions</td>
-                                <td>Stored until removal/update by the community or us</td>
+                                <td>Stored until removal/update by the community or us. Artists may request deletion of
+                                    their entry at any time.</td>
                             </tr>
                             <tr>
                                 <td>“Song of the Day” cache</td>
@@ -313,8 +336,8 @@
                             </tr>
                             <tr>
                                 <td>Backups</td>
-                                <td><strong>Encrypted (AES-256) and automatically overwritten after 7 weeks
-                                        (FIFO)</strong></td>
+                                <td><strong>Encrypted (AES-256) and automatically overwritten after
+                                        7 weeks (FIFO)</strong></td>
                             </tr>
                             <tr>
                                 <td>Consent cookies</td>
@@ -325,7 +348,7 @@
                                 <td>13 months, then auto-deleted</td>
                             </tr>
                             <tr>
-                                <td>Contact inquiries</td>
+                                <td>Contact inquiries &amp; donation notifications</td>
                                 <td>Up to 3 years after final response, then deleted</td>
                             </tr>
                             <tr>
@@ -340,18 +363,19 @@
 
                 <h2 id="legal-bases">11. Legal Bases Overview</h2>
                 <ul>
-                    <li><strong>Contract performance (Art. 6 (1)(b))</strong> – Spotify OAuth &amp; playback.</li>
-                    <li><strong>Legitimate interests (Art. 6 (1)(f))</strong> – service stability, attack detection,
-                        community list maintenance, communication via e-mail (interests described in Section 4). You may
-                        object at any time (Art. 21 GDPR).</li>
-                    <li><strong>Consent (Art. 6 (1)(a) GDPR; § 25 TTDSG)</strong> – non-essential cookies and SDK.</li>
-                    <li><strong>Legal obligation (Art. 6 (1)(c) GDPR)</strong> – documentation of consent (Art. 7 (1)).
+                    <li><strong>Contract performance (Art. 6 (1)(b))</strong> - Spotify OAuth &amp; playback, processing
+                        of donations via PayPal.</li>
+                    <li><strong>Legitimate interests (Art. 6 (1)(f))</strong> - service stability, attack detection,
+                        community list maintenance, communication via e-mail, support via donations. You may object at
+                        any time (Art. 21 GDPR).</li>
+                    <li><strong>Consent (Art. 6 (1)(a) GDPR; § 25 TTDSG)</strong> - non-essential cookies and SDK.</li>
+                    <li><strong>Legal obligation (Art. 6 (1)(c) GDPR)</strong> - documentation of consent (Art. 7 (1)).
                     </li>
                 </ul>
 
                 <hr>
 
-                <h2 id="rights">12. Your Rights (Art. 15 – 21 GDPR)</h2>
+                <h2 id="rights">12. Your Rights (Art. 15 - 21 GDPR)</h2>
                 <p>You have the right to:</p>
                 <ul>
                     <li><strong>Access</strong> your personal data;</li>
@@ -381,8 +405,8 @@
                 <hr>
 
                 <h2 id="adm">13. Automated Decision-Making &amp; Profiling</h2>
-                <p>We do <strong>not</strong> use automated decision-making or profiling within the meaning of Art. 22
-                    GDPR.</p>
+                <p>We do <strong>not</strong> use automated decision-making or profiling within the meaning of
+                    Art. 22 GDPR.</p>
 
                 <hr>
 
@@ -406,14 +430,15 @@
                 <hr>
 
                 <h2 id="contact-inquiries">16. Contact Inquiries &amp; Retention</h2>
-                <p>When you contact us by e-mail or phone, we process your data (e-mail address, content, attachments,
-                    notes) under Art. 6 (1)(f) GDPR to handle your inquiry and for record-keeping. Messages are deleted
+                <p>When you contact us by e-mail or phone, or when we receive donation notifications from PayPal,
+                    we process your data (e-mail address, content, attachments, notes) under Art. 6 (1)(f) GDPR to
+                    handle your inquiry and for record-keeping. Messages and notifications are deleted
                     <strong>three years</strong> after our last response.
                 </p>
 
                 <hr>
 
-                <h2 id="annex-a">Annex A – Cookies &amp; Local Storage Objects</h2>
+                <h2 id="annex-a">Annex A - Cookies &amp; Local Storage Objects</h2>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -505,18 +530,21 @@
                 <p><strong>Note:</strong> Functional objects (<code>debug</code>) are stored <strong>only</strong> if
                     you explicitly activate them. The Spotify Web Playback SDK sets additional cookies after you grant
                     the “Functionality” consent level; details are provided by Spotify in their own privacy
-                    documentation.</p>
+                    documentation. Donations via PayPal take place on PayPal's own website; PayPal's cookies and
+                    privacy policy apply.</p>
 
                 <hr>
 
                 <h2 id="key-takeaways">Key Takeaways</h2>
                 <ul>
                     <li>No personal user data is stored server-side.</li>
-                    <li>Spotify interactions remain client-side; SDK loads only after consent.</li>
+                    <li>Spotify interactions remain client-side; the SDK loads only after consent.</li>
                     <li>Host logs are pseudonymised and retained ≤ 7 days; encrypted backups rotate after 7 weeks.</li>
                     <li>Consent logs are kept 13 months to fulfil legal proof obligations.</li>
-                    <li>Support e-mails are processed by Gmail under EU–US DPF/SCCs.</li>
-                    <li>We answer data-subject requests within one month (Art. 12 (3) GDPR).</li>
+                    <li>Support e-mails are processed by Gmail under EU-US DPF/SCCs.</li>
+                    <li>Donations via PayPal are processed by PayPal; we receive only confirmation, not payment details.
+                    </li>
+                    <li>We answer data-subject requests within one month (Art.12 (3) GDPR).</li>
                 </ul>
 
                 <p><em>Version ID: <strong>v2025-07-25</strong></em></p>
@@ -525,6 +553,7 @@
 
         <footer>
             <p class="footer-links">
+                <a href="/index.html">Back to home</a> |
                 <a href="/privacy.html">Privacy Policy</a> |
                 <a href="/imprint.html">Imprint</a> |
                 <a href="/admin-login.html">Admin Login</a> |
