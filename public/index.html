@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CCM19 Cookie Consent (muss VOR allen Skripten stehen) -->
+    <script
+        src="https://cloud.ccm19.de/app.js?apiKey=9b67a6e9783887f297885b3873880c5c57df43ec8d58e867&domain=687ffd994874b7138b08f6f2&callback=onCCM19Consent"
+        referrerpolicy="origin"></script>
+    <script>
+        function onCCM19Consent(integrationName, action) {
+            if (integrationName === 'spotify-login' && action === 'accept') {
+                CCM.loadGroup('spotify-login');
+            }
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <title>AI Artist Skipper for Spotify | Automatically Skip AI Music</title>
+    <meta name="description"
+        content="Take control of your Spotify listening experience. Our tool monitors your playback and automatically skips songs from a curated watchlist of AI-generated artists." />
+    <meta name="keywords"
+        content="Spotify, AI music, AI artists, skip songs, music tool, playlist cleaner, AI blocker" />
+    <link rel="canonical" href="https://ai-musician-list.tanzstoff.de/" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ai-musician-list.tanzstoff.de/" />
+    <meta property="og:title" content="AI Artist Skipper for Spotify" />
+    <meta property="og:description"
+        content="Automatically skip AI-generated music on Spotify and keep your queue clean." />
+    <meta property="og:image" content="https://ai-musician-list.tanzstoff.de/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ai-musician-list.tanzstoff.de/" />
+    <meta name="twitter:title" content="AI Artist Skipper for Spotify" />
+    <meta name="twitter:description"
+        content="Automatically skip AI-generated music on Spotify and keep your queue clean." />
+    <meta name="twitter:image" content="https://ai-musician-list.tanzstoff.de/twitter-image.png" />
+
+    <!-- Local Stylesheet-->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- FontAwesome (self-hosted) -->
+    <link rel="stylesheet" href="/assets/icons/fontawesome/css/all.min.css" />
+
+    <!-- Core App Logic (läuft stets, auch ohne Spotify‑Consent) -->
+    <script src="/js/core.js" type="module"></script>
+
+    <!-- Consented App Logic (wird erst nach Zustimmung geladen) -->
+    <script data-ccm-loader-src="/js/app.js" data-ccm-loader-group="spotify-login" data-ccm-loader-module="true"
+        type="text/x-ccm-loader" charset="utf-8">
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Musician List</h1>
+            <p class="subtitle">Keep your Spotify queue free of AI-generated music.</p>
+            <p class="subtitle">This is a community driven project, everyone can contribute to it!</p>
+        </header>
+
+        <section id="social-links">
+            <h2>Community</h2>
+            <div class="social-buttons">
+                <a href="https://github.com/FlazeIGuess/ai-music-rep" target="_blank" rel="noopener noreferrer"
+                    class="social-button" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.reddit.com/r/Music/comments/1m7zq9q/i_built_a_free_communitydriven_tool_to/"
+                    target="_blank" rel="noopener noreferrer" class="social-button" aria-label="Reddit">
+                    <i class="fab fa-reddit"></i>
+                </a>
+                <a href="https://discord.gg/YepPg32Csa" target="_blank" rel="noopener noreferrer" class="social-button"
+                    aria-label="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="daily-song">
+            <!-- Content will be loaded by app.js -->
+        </section>
+
+        <section id="mission">
+            <details>
+                <summary>
+                    <h2>My Mission: Music by Humans, for Humans</h2>
+                </summary>
+                <p>
+                    Music is an essential form of human expression, a craft that connects artists and listeners on a
+                    deep,
+                    emotional level. I believe this connection is threatened by the rise of mass-produced, AI-generated
+                    content.
+                </p>
+                <p>
+                    This project is my stand against the devaluation of music. It's for those who believe that art
+                    should
+                    have a soul, not just an algorithm. When music is created almost for free, without human passion or
+                    effort, only large corporations profit, while real artists struggle to be heard. I aim to preserve
+                    the
+                    value of human creativity and ensure that music remains a meaningful part of our culture.
+                </p>
+            </details>
+        </section>
+
+        <main>
+            <section id="blocker-tool">
+                <h2><i class="fas fa-forward"></i> Auto Skipper</h2>
+                <p>To use the Auto Skipper, you need to create your own free Spotify App. This is a one-time setup that
+                    takes about 2 minutes. Your data is saved only in your browser.</p>
+
+                <div id="auto-skipper-content">
+                    <div class="setup-guide">
+                        <h3><i class="fas fa-cog"></i> One-Time Setup Guide</h3>
+                        <ol>
+                            <li>Go to the <a href="https://developer.spotify.com/dashboard" target="_blank">Spotify
+                                    Developer
+                                    Dashboard</a> and log in.</li>
+                            <li>Click <strong>"Create app"</strong>. Give it any name and description.</li>
+                            <li>Once created, you will see your <strong>Client ID</strong>. Copy it.</li>
+                            <li>Click <strong>"Edit settings"</strong>. In the "Redirect URIs" field, add these two
+                                exact URLs:
+                                <br><code>https://ai-musician-list.tanzstoff.de/</code>
+                                <br><code>http://127.0.0.1:8888</code>
+                            </li>
+                            <li>Scroll down, check the box for <strong>"Web API"</strong>.</li>
+                            <li>Click <strong>"Save"</strong> at the bottom of the Spotify form.</li>
+                            <li>Paste your Client ID below and click "Save ID".</li>
+                        </ol>
+                        <div class="form-group">
+                            <label for="user-client-id">Your Spotify Client ID:</label>
+                            <input type="text" id="user-client-id" placeholder="Enter your 32-character Client ID"
+                                disabled>
+                            <button id="save-client-id-btn" class="button" disabled>Save ID</button>
+                        </div>
+                        <p class="consent-required-notice" id="consent-notice-setup">
+                            <i class="fas fa-info-circle"></i> Please accept "Personalization" cookies to enable this
+                            feature.
+                        </p>
+                    </div>
+
+                    <div id="connection-container" style="display: none;">
+                        <div class="id-saved-message">
+                            <p><i class="fas fa-check-circle"></i> Your Client ID is saved in your browser.</p>
+                            <button id="clear-client-id-btn" class="button-danger button-small">Clear ID</button>
+                        </div>
+                        <div class="connection-box">
+                            <div class="connection-method" id="browser-mode-box">
+                                <h4>Browser Mode</h4>
+                                <p>Monitor and skip directly in this browser tab. Ideal for desktop use.</p>
+                                <button id="connect-spotify" disabled><i class="fab fa-spotify"></i> Connect
+                                    Spotify</button>
+                            </div>
+                            <div class="connection-method" id="desktop-mode-box">
+                                <h4>Desktop App (Beta)</h4>
+                                <p>Run a lightweight script in the background on your PC/Mac. Most reliable.</p>
+                                <button id="download-script-btn" disabled><i class="fas fa-download"></i> Download
+                                    Script</button>
+                            </div>
+                        </div>
+                        <details class="advanced-guide" id="script-guide">
+                            <summary>How to use the Desktop App</summary>
+                            <div class="guide-content">
+                                <p>The script runs in the background on your PC/Mac and is the most reliable way to use
+                                    the Auto
+                                    Skipper.</p>
+                                <ol>
+                                    <li><strong>Install Python:</strong> If you don't have it, install Python from <a
+                                            href="https://www.python.org/downloads/" target="_blank">python.org</a>.
+                                        Make sure to check
+                                        "Add Python to PATH" during installation.</li>
+                                    <li><strong>Install Libraries:</strong> Open a terminal (Command Prompt or
+                                        PowerShell on
+                                        Windows, Terminal on Mac) and run this command:
+                                        <br><code>pip install spotipy requests</code>
+                                    </li>
+                                    <li><strong>Run the Script:</strong> Save the downloaded <code>watcher.py</code>
+                                        file to a
+                                        folder. Open a terminal in that folder and run:
+                                        <br><code>python watcher.py</code>
+                                    </li>
+                                    <li><strong>First Login:</strong> A browser window will open for you to log in to
+                                        Spotify.
+                                        After you approve, you can close the window.</li>
+                                    <li><strong>Autostart (Optional on Windows):</strong> To make the script run
+                                        automatically
+                                        when your PC starts, press <code>Win + R</code>, type
+                                        <code>shell:startup</code>, and press
+                                        Enter. Place a shortcut to the <code>watcher.py</code> file in this folder.
+                                    </li>
+                                </ol>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <p class="consent-notice">By connecting or downloading, you agree to the use of necessary local
+                    storage/files to keep you logged in.</p>
+
+                <div id="monitoring-section" style="display:none;">
+                    <button id="toggle-monitoring" class="button-monitor"><i class="fas fa-play"></i> Start
+                        Skipper</button>
+                    <div id="player-status">
+                        <p id="status">Status: Idle</p>
+                        <p><strong><i class="fas fa-music"></i> Now Playing:</strong> <span
+                                id="current-track">None</span></p>
+                    </div>
+                    <button id="logout-btn" class="button-danger"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </section>
+
+            <section id="mobile-guide">
+                <details>
+                    <summary>
+                        <h2><i class="fas fa-mobile-alt"></i> For Mobile Users</h2>
+                    </summary>
+                    <p>Even without live monitoring, you can use this list to improve your listening experience!</p>
+                    <ol>
+                        <li>Find an artist on the watchlists below.</li>
+                        <li>Click the link to open their profile in your Spotify app.</li>
+                        <li>Tap the three dots (<strong>...</strong>) on the artist's page.</li>
+                        <li>Select <strong>"Don't play this artist"</strong>.</li>
+                    </ol>
+                    <p>Spotify will now stop playing music from this artist for you.</p>
+                </details>
+            </section>
+
+            <section id="artist-list">
+                <h2><i class="fas fa-list-ul"></i> Official Watchlist</h2>
+                <p>Wanna know, if an Artist is AI, just search for it!</p>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search for an artist..." />
+                </div>
+                <div class="table-container">
+                    <table id="artists-table">
+                        <thead>
+                            <tr>
+                                <th>Artist Name</th>
+                                <th>Spotify Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Artist data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="report-form">
+                <h2><i class="fas fa-flag"></i> Report an Artist</h2>
+                <p>Found an AI artist not on the list? Help us keep it up to date.</p>
+                <form id="submission-form">
+                    <div class="form-group">
+                        <label for="artist-name">Artist Name (Auto fills if logged in):</label>
+                        <input type="text" id="artist-name" name="artist-name" required
+                            placeholder="e.g., AI Musician" />
+                    </div>
+                    <div class="form-group">
+                        <label for="spotify-link">Spotify Artist Profile Link:</label>
+                        <input type="url" id="spotify-link" name="spotify-link" required
+                            placeholder="https://open.spotify.com/artist/..." />
+                    </div>
+                    <button type="submit" id="submit-button">Submit Report</button>
+                </form>
+            </section>
+
+            <section id="removal-request">
+                <h2><i class="fas fa-shield-alt"></i> Request Artist Removal</h2>
+                <p>If you are an artist and believe you have been incorrectly added to the watchlist, please let us
+                    know. We take these requests very seriously. Send us an email with your artist name and a link to
+                    your
+                    Spotify profile, and we will review your case promptly.</p>
+                <a href="mailto:victor.boiting@gmail.com?subject=Artist%20Removal%20Request" class="button">
+                    <i class="fas fa-envelope"></i> Send Removal Request
+                </a>
+            </section>
+
+            <section id="donation">
+                <h2><i class="fas fa-heart"></i> Support This Project</h2>
+                <p>If you find this tool useful, please consider supporting its development and server costs. Every
+                    little bit helps to keep the list growing and the service running. Thank you!</p>
+                <a href="https://paypal.me/victorboiting" class="button" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-paypal"></i> Donate via PayPal
+                </a>
+            </section>
+
+            <section id="changelog">
+                <details> <!-- Keep it open by default to show the latest change -->
+                    <summary>
+                        <h2><i class="fas fa-newspaper"></i> News & Updates <span class="version-badge">v1.3.0</span>
+                        </h2>
+                    </summary>
+                    <!-- … rest of changelog … -->
+                </details>
+            </section>
+
+            <section id="my-music">
+                <h2><i class="fas fa-headphones-alt"></i> My Music :)</h2>
+                <p>This is just a tiny experimental project made by me :P</p>
+                <a href="https://www.tanzstoff.de/mymusic.html" class="button" target="_blank"
+                    rel="noopener noreferrer">
+                    Listen on Tanzstoff.de <i class="fas fa-external-link-alt"></i>
+                </a>
+            </section>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ in GERMANY!</p>
+            <p>This tool is not affiliated with Spotify AB. Use at your own risk.</p>
+            <p><strong>A note on transparency:</strong> As I'm not a professional developer, I've built this project
+                with significant help from AI assistants. My goal is to bring this idea to life, and I believe in being
+                open about the tools that made it possible.</p>
+            <p class="footer-links">
+                <a href="/privacy.html">Privacy Policy</a> |
+                <a href="/imprint.html">Imprint</a> |
+                <a href="/admin-login.html">Admin Login</a> |
+                <a href="#" onclick="CCM.openWidget(); return false;">Cookie-Settings</a>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

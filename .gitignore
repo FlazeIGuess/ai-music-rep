@@ -1,0 +1,39 @@
+# Dependencies
+# Should be installed with `npm install`
+node_modules/
+
+# Environment Variables
+# IMPORTANT: Never commit your .env file! It contains sensitive credentials.
+.env
+
+# Python specific
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Compiled Python files and cache
+__pycache__/
+*.pyc
+
+# Cache files
+# Spotify token cache files
+*.token_cache
+.spotify_backend_token_cache
+
+# IDE / Editor specific
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Build & Deployment specific
+# Local Netlify folder
+.netlify/
+
+# Temporary / Development files
+# These seem to be one-off scripts or test files
+get_refresh_token.py
+api.ini

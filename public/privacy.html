@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | AI Artist Skipper</title>
+
+    <!-- ccm19 Cookie Consent -->
+    <script
+        src="https://cloud.ccm19.de/app.js?apiKey=9b67a6e9783887f297885b3873880c5c57df43ec8d58e867&domain=687ffd994874b7138b08f6f2&callback=onCCM19Consent"
+        referrerpolicy="origin"></script>
+
+    <!-- Local stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Privacy Policy / Datenschutzerklärung</h1>
+            <p><strong>for “AI Artist Skipper”</strong><br>
+                <em>Last updated: <strong>July 25, 2025 – Revision R3.1</strong></em>
+            </p>
+        </header>
+
+        <main>
+            <nav aria-label="Inhaltsverzeichnis">
+                <ol>
+                    <li><a href="#controller">Data Controller &amp; Contact</a></li>
+                    <li><a href="#purpose">Purpose &amp; Privacy by Design</a></li>
+                    <li><a href="#architecture">System Architecture</a></li>
+                    <li><a href="#categories">Categories of Data &amp; Retention</a></li>
+                    <li><a href="#flows">Data Flows Overview</a></li>
+                    <li><a href="#thirdparties">Third-Party Providers &amp; Recipients</a></li>
+                    <li><a href="#cookies">Cookies, Local Storage &amp; Consent Management</a></li>
+                    <li><a href="#transfers">International Data Transfers</a></li>
+                    <li><a href="#spotify-consent">Spotify SDK Loading &amp; Consent</a></li>
+                    <li><a href="#retention">Data Retention Summary</a></li>
+                    <li><a href="#legal-bases">Legal Bases Overview</a></li>
+                    <li><a href="#rights">Your Rights (Art. 15–21 GDPR)</a></li>
+                    <li><a href="#adm">Automated Decision-Making &amp; Profiling</a></li>
+                    <li><a href="#toms">Technical &amp; Organisational Measures (TOMs)</a></li>
+                    <li><a href="#minors">Protection of Minors</a></li>
+                    <li><a href="#contact-inquiries">Contact Inquiries &amp; Retention</a></li>
+                    <li><a href="#annex-a">Annex A – Cookies &amp; Local Storage Objects</a></li>
+                    <li><a href="#key-takeaways">Key Takeaways</a></li>
+                </ol>
+            </nav>
+
+            <section>
+                <blockquote>
+                    <strong>Important – No Legal Advice:</strong> This document fulfils the transparency obligations of
+                    Art. 13 GDPR. It does <strong>not</strong> constitute individual legal advice.
+                </blockquote>
+
+                <hr>
+
+                <h2 id="controller">1. Data Controller &amp; Contact</h2>
+                <p><strong>Victor Boiting</strong><br>
+                    Hachstiege 30<br>
+                    48565 Steinfurt<br>
+                    Germany<br>
+                    Phone: +49 1523 4756324<br>
+                    Email: <a href="mailto:victor.boiting@gmail.com">victor.boiting@gmail.com</a>
+                </p>
+                <p>No data-protection officer is required under § 38 BDSG. We are the <strong>sole controller</strong>
+                    within the meaning of Art. 4(7) GDPR.</p>
+
+                <hr>
+
+                <h2 id="purpose">2. Purpose &amp; Privacy by Design</h2>
+                <p>AI Artist Skipper lets you skip tracks by a curated list of presumed AI-generated artists on Spotify.
+                    By design, <strong>we do not process or store any personal user data on our servers</strong>. All
+                    Spotify-related interactions take place entirely in your browser (<em>Privacy by Design</em>, Art.
+                    25 GDPR).</p>
+
+                <hr>
+
+                <h2 id="architecture">3. System Architecture</h2>
+                <ul>
+                    <li><strong>Frontend (SPA):</strong> Runs completely in your browser.</li>
+                    <li><strong>Backend (Node.js/Express):</strong> Serves static files and a minimal JSON API, hosted
+                        by <strong>Uberspace GmbH</strong> (Mainz, Germany).</li>
+                    <li><strong>Database (MySQL):</strong> Also hosted by Uberspace GmbH in Germany.</li>
+                </ul>
+
+                <hr>
+
+                <h2 id="categories">4. Categories of Data &amp; Retention</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Elements</th>
+                                <th>Location</th>
+                                <th>Retention &amp; Deletion</th>
+                                <th>Legitimate Interest (Art. 6 (1)(f))</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Infrastructure logs</strong></td>
+                                <td>IP address*, timestamp, User-Agent</td>
+                                <td>Uberspace host logs</td>
+                                <td>≤ 7 days, then automatic deletion</td>
+                                <td>Detection of attacks &amp; ensuring service stability outweighs user interests
+                                    because data are pseudonymised quickly.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Spotify credentials</strong></td>
+                                <td><code>spotify_access_token</code>, <code>spotify_refresh_token</code>,
+                                    <code>code_verifier</code>, <code>user_spotify_client_id</code>
+                                </td>
+                                <td>Browser localStorage</td>
+                                <td>Until you clear storage or revoke access</td>
+                                <td>Essential to provide the service you requested.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Debug flags</strong></td>
+                                <td><code>debug</code></td>
+                                <td>Browser localStorage</td>
+                                <td>Until cleared by you</td>
+                                <td>Troubleshooting on explicit request.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Artist data</strong></td>
+                                <td>Submitted artist name &amp; Spotify ID</td>
+                                <td>MySQL (Germany)</td>
+                                <td>Until removed/updated</td>
+                                <td>Operating our community list.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>“Song of the Day”</strong></td>
+                                <td>Track title, artist, Spotify link</td>
+                                <td>MySQL cache</td>
+                                <td>24 h (overwritten)</td>
+                                <td>Content presentation.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Consent status</strong></td>
+                                <td><code>ccm_consent</code> cookie &amp; mirror</td>
+                                <td>Browser</td>
+                                <td>12 months (renewed when you re-consent)</td>
+                                <td>Documenting your choice.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Consent logs</strong></td>
+                                <td>Consent-ID, timestamp, level, masked IP, UA</td>
+                                <td>ccm19 backend</td>
+                                <td><strong>13 months</strong> (390 days)</td>
+                                <td>Proof of consent (legal obligation).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>*IP addresses are personal data (CJEU <em>Breyer</em>, C-582/14).</p>
+
+                <hr>
+
+                <h2 id="flows">5. Data Flows Overview</h2>
+
+                <h3>A) Frontend (Browser)</h3>
+                <ul>
+                    <li><strong>OAuth PKCE Flow:</strong> You enter your Spotify Client ID; a <code>code_verifier</code>
+                        is generated locally. The OAuth exchange happens directly between your browser and Spotify; we
+                        never see or store your tokens.</li>
+                    <li><strong>Playback Calls:</strong> Made straight from your browser to the Spotify Web API.</li>
+                    <li><strong>API Calls:</strong> <code>GET /api/artists</code> (no personal data) and
+                        <code>POST /api/submit</code> (artist name + Spotify ID).
+                    </li>
+                </ul>
+
+                <h3>B) Backend (Uberspace, Germany)</h3>
+                <ul>
+                    <li>Serves static assets and the two API endpoints.</li>
+                    <li><strong>No application-level logging</strong> of IPs or tokens.</li>
+                    <li><strong>Host logs:</strong> IP, timestamp and User-Agent are pseudonymised immediately and
+                        deleted after ≤ 7 days to safeguard security and availability (legitimate interest).</li>
+                </ul>
+
+                <h3>C) Database (Uberspace, Germany)</h3>
+                <p>Stores only non-personal data: <code>artists</code>, <code>submissions</code>,
+                    <code>daily_song</code>.
+                </p>
+
+                <hr>
+
+                <h2 id="thirdparties">6. Third-Party Providers &amp; Recipients</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Provider (Role)</th>
+                                <th>Purpose</th>
+                                <th>Data Received</th>
+                                <th>Legal Basis</th>
+                                <th>Guarantees / Transfer Mechanism</th>
+                                <th>Retention</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Spotify AB</strong> (Sweden / Global) – independent controller</td>
+                                <td>OAuth &amp; playback</td>
+                                <td>Tokens and playback commands exchanged <strong>only</strong> between your browser
+                                    and Spotify</td>
+                                <td>Art. 6 (1)(b) GDPR (contract performance) &amp; § 25 TTDSG; Art. 6 (1)(f) GDPR
+                                    (service functionality)</td>
+                                <td>SCCs &amp; adequacy decisions (see Section 8 A)</td>
+                                <td>Controlled by Spotify</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Papoo Software &amp; Media GmbH</strong> (Germany) – processor</td>
+                                <td>Consent management (ccm19)</td>
+                                <td>Consent cookies &amp; logs</td>
+                                <td>Art. 6 (1)(a) GDPR; § 25 TTDSG</td>
+                                <td>Data processed in Germany</td>
+                                <td>13 months</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Uberspace GmbH</strong> (Germany) – processor</td>
+                                <td>Hosting &amp; database</td>
+                                <td>Pseudonymised host logs</td>
+                                <td>Art. 6 (1)(f) GDPR</td>
+                                <td>Processing in Germany</td>
+                                <td>≤ 7 days</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Google LLC</strong> (USA) – independent controller</td>
+                                <td>Handling and archiving support e-mails (Gmail)</td>
+                                <td>Sender+recipient address, timestamp, IP metadata, mail content, attachments</td>
+                                <td>Art. 6 (1)(f) GDPR (communication &amp; record-keeping)</td>
+                                <td><strong>EU–US Data Privacy Framework (DPF)</strong> &amp; <strong>Standard
+                                        Contractual Clauses (SCCs)</strong> plus encryption in transit and at rest</td>
+                                <td>Up to 3 years after last correspondence</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Empfängerkategorien i. S. v. Art. 13 Abs. 1 lit. e DSGVO: Hosting-Provider,
+                    Consent-Management-Provider, Musik-Streaming-Dienste, Kommunikations-Dienstleister.</p>
+                <p>Auftragsverarbeitungsverträge (AVVs) bestehen mit Uberspace und Papoo; Kopien sind auf Anfrage
+                    erhältlich.</p>
+
+                <hr>
+
+                <h2 id="cookies">7. Cookies, Local Storage &amp; Consent Management</h2>
+                <p>We use <strong>ccm19</strong> to collect and store your cookie preferences. You can revisit them at
+                    any time via the <strong>“Cookie Settings”</strong> link in the footer (Art. 7 (3) GDPR – withdrawal
+                    must be as easy as consent).</p>
+                <ul>
+                    <li><strong>Necessary cookies/local storage objects</strong> are set under § 25 (2) No. 2 TTDSG
+                        because they are technically required to provide the service (e.g. OAuth tokens to maintain the
+                        current playback session).</li>
+                    <li><strong>Functionality cookies</strong> (Spotify Web Playback SDK) load only after you grant
+                        “Functionality” consent.</li>
+                </ul>
+                <p>Details and lifetimes are available in <strong>Annex A</strong> at the end of this document.</p>
+
+                <hr>
+
+                <h2 id="transfers">8. International Data Transfers</h2>
+
+                <h3>A) Spotify Web API</h3>
+                <p>Spotify may process personal data (e.g. IP address, tokens) on servers outside the EEA. According to
+                    Spotify’s Privacy Policy, transfers rely on:</p>
+                <ul>
+                    <li><strong>Standard Contractual Clauses (SCCs)</strong> approved by the European Commission,</li>
+                    <li><strong>Adequacy decisions</strong> (Japan, Canada, South Korea, UK, Switzerland) and</li>
+                    <li>Supplementary measures such as encryption and access controls.</li>
+                </ul>
+
+                <h3>B) Gmail Support Communication</h3>
+                <p>Google LLC processes support e-mails on global infrastructure (incl. the USA). Transfers are covered
+                    by:</p>
+                <ul>
+                    <li>The <strong>EU–US Data Privacy Framework (DPF)</strong>, and</li>
+                    <li>The <strong>SCCs</strong> for any other locations.<br>
+                        You can request a copy of Google’s SCCs at any time.</li>
+                </ul>
+
+                <hr>
+
+                <h2 id="spotify-consent">9. Spotify SDK Loading &amp; Consent</h2>
+                <p>The Spotify Web Playback SDK is blocked until you grant the “Functionality” consent level in ccm19.
+                    Without this consent, no Spotify cookies or requests are initiated by our app.</p>
+
+                <hr>
+
+                <h2 id="retention">10. Data Retention Summary</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Retention &amp; Deletion Policy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Artist data &amp; submissions</td>
+                                <td>Stored until removal/update by the community or us</td>
+                            </tr>
+                            <tr>
+                                <td>“Song of the Day” cache</td>
+                                <td>Overwritten every 24 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Host logs</td>
+                                <td>Deleted automatically after ≤ 7 days</td>
+                            </tr>
+                            <tr>
+                                <td>Backups</td>
+                                <td><strong>Encrypted (AES-256) and automatically overwritten after 7 weeks
+                                        (FIFO)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Consent cookies</td>
+                                <td>12 months (renewed on re-consent)</td>
+                            </tr>
+                            <tr>
+                                <td>Consent logs</td>
+                                <td>13 months, then auto-deleted</td>
+                            </tr>
+                            <tr>
+                                <td>Contact inquiries</td>
+                                <td>Up to 3 years after final response, then deleted</td>
+                            </tr>
+                            <tr>
+                                <td>Local-storage tokens</td>
+                                <td>Until you clear your browser storage or revoke access</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr>
+
+                <h2 id="legal-bases">11. Legal Bases Overview</h2>
+                <ul>
+                    <li><strong>Contract performance (Art. 6 (1)(b))</strong> – Spotify OAuth &amp; playback.</li>
+                    <li><strong>Legitimate interests (Art. 6 (1)(f))</strong> – service stability, attack detection,
+                        community list maintenance, communication via e-mail (interests described in Section 4). You may
+                        object at any time (Art. 21 GDPR).</li>
+                    <li><strong>Consent (Art. 6 (1)(a) GDPR; § 25 TTDSG)</strong> – non-essential cookies and SDK.</li>
+                    <li><strong>Legal obligation (Art. 6 (1)(c) GDPR)</strong> – documentation of consent (Art. 7 (1)).
+                    </li>
+                </ul>
+
+                <hr>
+
+                <h2 id="rights">12. Your Rights (Art. 15 – 21 GDPR)</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li><strong>Access</strong> your personal data;</li>
+                    <li><strong>Rectify</strong> inaccurate or incomplete data;</li>
+                    <li><strong>Erase</strong> data (right to be forgotten);</li>
+                    <li><strong>Restrict</strong> processing;</li>
+                    <li><strong>Data portability</strong>;</li>
+                    <li><strong>Object</strong> to processing based on legitimate interests;</li>
+                    <li><strong>Withdraw consent</strong> at any time via the “Cookie Settings” link;</li>
+                    <li><strong>Lodge a complaint</strong> with any supervisory authority, e.g. LDI NRW (contact details
+                        below).</li>
+                </ul>
+                <p>We respond to all requests pursuant to Art. 15-22 GDPR <strong>without undue delay and in any event
+                        within one month</strong> of receiving your request (Art. 12 (3) GDPR).</p>
+                <p>Providing your IP address is technically necessary; all other data is voluntary.</p>
+
+                <h3>Supervisory Authority (Contact)</h3>
+                <p>
+                    Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)<br>
+                    Kavalleriestr. 2-4<br>
+                    40213 Düsseldorf<br>
+                    Germany<br>
+                    Phone: +49 211 38424-0<br>
+                    Website: <a href="https://www.ldi.nrw.de" rel="noopener noreferrer">https://www.ldi.nrw.de</a>
+                </p>
+
+                <hr>
+
+                <h2 id="adm">13. Automated Decision-Making &amp; Profiling</h2>
+                <p>We do <strong>not</strong> use automated decision-making or profiling within the meaning of Art. 22
+                    GDPR.</p>
+
+                <hr>
+
+                <h2 id="toms">14. Technical &amp; Organisational Measures (TOMs)</h2>
+                <ul>
+                    <li>TLS ≥ 1.2 with HSTS</li>
+                    <li>VPN/IP-whitelisting for admin interfaces</li>
+                    <li>IP-hashing middleware; quick pseudonymisation of host logs</li>
+                    <li>Encrypted backups (AES-256)</li>
+                    <li>Principle of least privilege &amp; role-based access controls</li>
+                    <li>Regular vulnerability scans &amp; timely patch management</li>
+                    <li>Annual external security audits (reports available under NDA)</li>
+                </ul>
+
+                <hr>
+
+                <h2 id="minors">15. Protection of Minors</h2>
+                <p>We do not knowingly collect personal data from minors. Spotify performs any necessary age
+                    verification.</p>
+
+                <hr>
+
+                <h2 id="contact-inquiries">16. Contact Inquiries &amp; Retention</h2>
+                <p>When you contact us by e-mail or phone, we process your data (e-mail address, content, attachments,
+                    notes) under Art. 6 (1)(f) GDPR to handle your inquiry and for record-keeping. Messages are deleted
+                    <strong>three years</strong> after our last response.
+                </p>
+
+                <hr>
+
+                <h2 id="annex-a">Annex A – Cookies &amp; Local Storage Objects</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Purpose</th>
+                                <th>Category/Consent Level</th>
+                                <th>Storage Location</th>
+                                <th>Lifetime</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>ccm_consent</code></td>
+                                <td>Cookie</td>
+                                <td>Stores your consent preferences (ccm19)</td>
+                                <td>Necessary / Consent Management</td>
+                                <td>Browser</td>
+                                <td>12 months (renewed on re-consent)</td>
+                            </tr>
+                            <tr>
+                                <td><code>ccm_consent_mirror</code></td>
+                                <td>Local Storage</td>
+                                <td>Same as above (fallback)</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>12 months</td>
+                            </tr>
+                            <tr>
+                                <td><code>spotify_access_token</code></td>
+                                <td>Local Storage</td>
+                                <td>Maintains Spotify session (OAuth)</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>Until cleared or revoked</td>
+                            </tr>
+                            <tr>
+                                <td><code>spotify_refresh_token</code></td>
+                                <td>Local Storage</td>
+                                <td>Renews Spotify session</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>Until cleared or revoked</td>
+                            </tr>
+                            <tr>
+                                <td><code>code_verifier</code></td>
+                                <td>Local Storage</td>
+                                <td>PKCE security parameter</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>Until cleared or revoked</td>
+                            </tr>
+                            <tr>
+                                <td><code>user_spotify_client_id</code></td>
+                                <td>Local Storage</td>
+                                <td>Stores your Spotify Client ID for convenience</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>Until cleared</td>
+                            </tr>
+                            <tr>
+                                <td><code>debug</code></td>
+                                <td>Local Storage</td>
+                                <td>Enables debug mode on your explicit request</td>
+                                <td>Functional (optional)</td>
+                                <td>Browser</td>
+                                <td>Until cleared</td>
+                            </tr>
+                            <tr>
+                                <td><code>ccm_cid</code> (set by ccm19)</td>
+                                <td>Cookie</td>
+                                <td>Internal ID for this consent banner instance</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>Session</td>
+                            </tr>
+                            <tr>
+                                <td><code>ccm_gid</code> (set by ccm19)</td>
+                                <td>Cookie</td>
+                                <td>Stores anonymised group consent state</td>
+                                <td>Necessary</td>
+                                <td>Browser</td>
+                                <td>Session</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Note:</strong> Functional objects (<code>debug</code>) are stored <strong>only</strong> if
+                    you explicitly activate them. The Spotify Web Playback SDK sets additional cookies after you grant
+                    the “Functionality” consent level; details are provided by Spotify in their own privacy
+                    documentation.</p>
+
+                <hr>
+
+                <h2 id="key-takeaways">Key Takeaways</h2>
+                <ul>
+                    <li>No personal user data is stored server-side.</li>
+                    <li>Spotify interactions remain client-side; SDK loads only after consent.</li>
+                    <li>Host logs are pseudonymised and retained ≤ 7 days; encrypted backups rotate after 7 weeks.</li>
+                    <li>Consent logs are kept 13 months to fulfil legal proof obligations.</li>
+                    <li>Support e-mails are processed by Gmail under EU–US DPF/SCCs.</li>
+                    <li>We answer data-subject requests within one month (Art. 12 (3) GDPR).</li>
+                </ul>
+
+                <p><em>Version ID: <strong>v2025-07-25</strong></em></p>
+            </section>
+        </main>
+
+        <footer>
+            <p class="footer-links">
+                <a href="/privacy.html">Privacy Policy</a> |
+                <a href="/imprint.html">Imprint</a> |
+                <a href="/admin-login.html">Admin Login</a> |
+                <a href="#" onclick="CCM.openWidget(); return false;">Cookie-Settings</a>
+            </p>
+        </footer>
+    </div>
+
+</body>
+
+</html>

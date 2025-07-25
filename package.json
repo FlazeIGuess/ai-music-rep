@@ -1,0 +1,20 @@
+{
+    "name": "ai-blocker-backend",
+    "version": "1.0.0",
+    "description": "Backend for the AI Artist Blocker",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^9.0.0",
+        "mysql2": "^3.10.1",
+        "node-fetch": "^2.6.7"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

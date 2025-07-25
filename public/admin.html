@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AI Artist Skipper</title>
+
+    <!-- ccm19 Cookie Consent -->
+    <script
+        src="https://cloud.ccm19.de/app.js?apiKey=9b67a6e9783887f297885b3873880c5c57df43ec8d58e867&domain=687ffd994874b7138b08f6f2&callback=onCCM19Consent"
+        referrerpolicy="origin"></script>
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/assets/icons/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-user-shield" aria-hidden="true"></i> Admin Dashboard</h1>
+            <p class="subtitle">Review and manage new artist submissions.</p>
+            <button id="logout-btn" class="button-danger">Logout <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+            </button>
+        </header>
+
+        <main>
+            <section id="submissions">
+                <h2><i class="fas fa-inbox" aria-hidden="true"></i> Pending Submissions</h2>
+                <div class="search-box">
+                    <input type="text" id="submission-search" placeholder="Search submissions...">
+                </div>
+                <div id="submissions-list">
+                    <!-- Submissions will be loaded here -->
+                </div>
+            </section>
+
+            <section id="manage-artists">
+                <h2><i class="fas fa-list-ul" aria-hidden="true"></i> Manage Official Watchlist</h2>
+                <div class="search-box">
+                    <input type="text" id="official-artist-search" placeholder="Search official artists...">
+                </div>
+                <div id="official-artists-list">
+                    <!-- Official artists will be loaded here -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p class="footer-links">
+                <a href="/privacy.html">Privacy Policy</a> |
+                <a href="/imprint.html">Imprint</a> |
+                <a href="/admin-login.html">Admin Login</a> |
+                <a href="#" onclick="CCM.openWidget(); return false;">Cookie-Settings</a>
+            </p>
+        </footer>
+    </div>
+    <script src="/js/config.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>
