@@ -132,7 +132,7 @@ export async function downloadPersonalizedScript() {
   try {
     // Add a cache‑busting query parameter so the user always gets
     // the latest version of the script.
-    const response = await fetch(`watcher.py?v=${Date.now()}`);
+    const response = await fetch(`js/watcher.py?v=${Date.now()}`);
     if (!response.ok) throw new Error('Could not load the script template.');
     let scriptContent = await response.text();
     scriptContent = scriptContent.replace('YOUR_32_CHARACTER_CLIENT_ID_HERE', state.userClientId);

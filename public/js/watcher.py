@@ -8,7 +8,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 
 # --- CONFIGURATION ---
-CLIENT_ID = "YOUR_32_CHARACTER_CLIENT_ID_HERE"  # Replace with your actual Client ID
+CLIENT_ID = "0ce23956cd444ec58ab849e2acdb12d3"  # Replace with your actual Client ID
 REDIRECT_URI = "http://127.0.0.1:8888"
 SCOPE = "user-read-playback-state user-modify-playback-state"
 API_BASE_URL = "https://ai-musician-list.tanzstoff.de/api"

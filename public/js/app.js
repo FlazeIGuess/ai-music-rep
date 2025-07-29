@@ -7,12 +7,14 @@
 // it calls the initialization routine to kick things off.
 
 import { redirectToSpotify, handlePageLoad, downloadPersonalizedScript, handleLogout } from './auth.js';
+import { initState, saveClientId as saveClientIdInState, clearClientId as clearClientIdInState } from './state-manager.js';
+
 /**
  * Initializes functionalities that require user consent (e.g., for localStorage).
  * This is called by the loader.js after the user gives consent and the script is loaded.
  */
 export function initializeApp() {
-  console.log("Initializing consented application functionalities (login)...");
+  initState(); // Initialize state from localStorage
 
   // Enable the setup form now that consent is given
   const clientIdInput = document.getElementById('user-client-id');
@@ -35,10 +37,10 @@ export function initializeApp() {
   if (downloadBtn) downloadBtn.addEventListener('click', downloadPersonalizedScript);
 
   const saveClientBtn = document.getElementById('save-client-id-btn');
-  if (saveClientBtn) saveClientBtn.addEventListener('click', saveClientId);
+  if (saveClientBtn) saveClientBtn.addEventListener('click', handleSaveClientId);
 
   const clearClientBtn = document.getElementById('clear-client-id-btn');
-  if (clearClientBtn) clearClientBtn.addEventListener('click', clearClientId);
+  if (clearClientBtn) clearClientBtn.addEventListener('click', handleClearClientId);
 
   // --- DYNAMIC CLIENT ID HANDLING ---
   const userClientId = localStorage.getItem('user_spotify_client_id') || null;
@@ -57,11 +59,11 @@ export function initializeApp() {
   handlePageLoad();
 }
 
-function saveClientId() {
+function handleSaveClientId() {
   const input = document.getElementById('user-client-id');
   const newClientId = input.value.trim();
   if (newClientId && newClientId.length === 32) {
-    localStorage.setItem('user_spotify_client_id', newClientId);
+    saveClientIdInState(newClientId);
     alert('Client ID saved! You can now use the Auto Skipper.');
 
     // Update UI correctly after saving
@@ -76,9 +78,9 @@ function saveClientId() {
   }
 }
 
-function clearClientId() {
+function handleClearClientId() {
   if (confirm('Are you sure you want to clear your saved Client ID?')) {
-    localStorage.removeItem('user_spotify_client_id');
+    clearClientIdInState();
 
     const input = document.getElementById('user-client-id');
     if (input) {
@@ -99,8 +101,6 @@ function clearClientId() {
  * This is called by the loader when consent is revoked.
  */
 export async function shutdownConsentedApp() {
-  console.log("Consent revoked. Shutting down consented app functionalities...");
-
   // Dynamically import here to avoid circular dependencies
   const { stopMonitoring } = await import('./monitor.js');
   stopMonitoring();

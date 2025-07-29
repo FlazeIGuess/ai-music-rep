@@ -37,3 +37,4 @@ Thumbs.db
 # These seem to be one-off scripts or test files
 get_refresh_token.py
 api.ini
+docker-compose.yml

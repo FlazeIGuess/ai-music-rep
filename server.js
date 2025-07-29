@@ -244,7 +244,7 @@ async function selectAndStoreDailySong() {
 }
 
 // Route to manually trigger the daily song selection (for cron jobs)
-app.post('/run-daily-song-selection', (req, res) => {
+router.post('/run-daily-song-selection', (req, res) => {
     // Optional: Add a secret key check for security
     const secret = req.headers['x-cron-secret'];
     if (secret !== process.env.CRON_SECRET) {
