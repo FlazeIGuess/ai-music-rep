@@ -38,15 +38,50 @@ function displayDailySong(song) {
     }
 
     dailySongSection.innerHTML = `
-        <h2><i class="fas fa-music"></i> Song of the Day</h2>
-        <a href="${song.spotify_url}" target="_blank" rel="noopener noreferrer" class="daily-song-link">
-            <div class="daily-song-content">
-                <img src="${song.image_url}" alt="Album art for ${song.song_name}" class="album-art">
-                <div class="song-details">
-                    <h3>${song.song_name}</h3>
-                    <p>${song.artist_name}</p>
+        <div class="daily-song-container expanded">
+            <h2><i class="fas fa-music"></i> Song of the Day</h2>
+            <a href="${song.spotify_url}" target="_blank" rel="noopener noreferrer" class="daily-song-link">
+                <div class="daily-song-content">
+                    <img src="${song.image_url}" alt="Album art for ${song.song_name}" class="album-art">
+                    <div class="song-details">
+                        <h3>${song.song_name}</h3>
+                        <p>${song.artist_name}</p>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     `;
+
+    // Function to update the display state based on scroll position
+    function updateDailySongDisplayState() {
+        // Only apply scroll behavior on mobile screens (max-width: 768px)
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            const dailySongSection = document.getElementById('daily-song');
+            if (!dailySongSection) return;
+
+            // Determine scroll threshold (e.g., 100px from the top)
+            const scrollThreshold = 100;
+
+            if (window.scrollY > scrollThreshold) {
+                dailySongSection.classList.remove('expanded');
+                dailySongSection.classList.add('collapsed');
+            } else {
+                dailySongSection.classList.remove('collapsed');
+                dailySongSection.classList.add('expanded');
+            }
+        } else {
+            // Ensure it's always expanded on desktop if the window is resized
+            const dailySongSection = document.getElementById('daily-song');
+            if (dailySongSection) {
+                dailySongSection.classList.remove('collapsed');
+                dailySongSection.classList.add('expanded');
+            }
+        }
+    }
+
+    // Set initial state on page load
+    updateDailySongDisplayState();
+
+    // Add scroll event listener
+    window.addEventListener('scroll', updateDailySongDisplayState);
 }

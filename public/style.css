@@ -256,6 +256,7 @@ section:hover {
     width: 80px;
     height: 80px;
     border-radius: 8px;
+    /* This will be overridden for mobile */
     object-fit: cover;
 }
 
@@ -303,6 +304,10 @@ section:hover {
         /* Smaller album art */
         height: 60px;
         margin-bottom: 0;
+        border-radius: 8px;
+        /* Ensure it's square on desktop */
+        animation: none;
+        /* No spinning on desktop */
     }
 
     #daily-song .song-details h3 {
@@ -311,40 +316,155 @@ section:hover {
     }
 }
 
-/* --- Mobile-only Daily Song Styling --- */
+/* --- Mobile-only Daily Song Styling (Override for fixed position and dynamic content) --- */
 @media (max-width: 1023px) {
     #daily-song {
         position: fixed;
+        /* Keep fixed position */
         bottom: 15px;
         right: 15px;
-        width: 60px;
-        /* Size of the album art */
-        height: 60px;
         z-index: 1000;
-        background: none;
-        border: none;
-        padding: 0;
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        /* Use a more subtle shadow */
+        margin: 0;
+        /* Remove auto margins */
+        border-radius: 12px;
+        /* Add some border-radius to the sticky container */
+        display: flex;
+        /* Use flexbox for direct child arrangement */
+        align-items: center;
+        overflow: hidden;
+        /* Hide overflowing content during transition */
+        transition: width 0.3s ease-out, height 0.3s ease-out, padding 0.3s ease-out;
+        /* Smooth transition */
     }
 
-    #daily-song h2,
-    #daily-song .song-details {
-        display: none;
-        /* Hide title and text */
+    #daily-song.expanded {
+        width: 250px;
+        /* Expanded width */
+        height: 60px;
+        /* Adjusted height to make total visual height 80px with 10px top/bottom padding */
+        padding: 10px 15px;
+        /* Padding for expanded state */
+        justify-content: flex-start;
+        /* Align content to start when expanded */
     }
 
-    #daily-song .daily-song-content {
+    #daily-song.collapsed {
+        width: 80px;
+        /* Collapsed width to show only cover */
+        height: 80px;
+        /* Collapsed height (make it square) */
         padding: 0;
+        /* No padding when collapsed */
+        justify-content: center;
+        /* Center the single item (album art) */
     }
 
+    /* Hide title always on mobile */
+    #daily-song h2 {
+        display: none;
+    }
+
+    /* Album art styles for mobile, always round and spinning */
     #daily-song .album-art {
+        width: 60px;
+        /* Default size for mobile, expanded and collapsed */
+        height: 60px;
+        border-radius: 50%;
+        /* Make it round on mobile */
+        animation: spin 10s linear infinite;
+        /* Spinning animation */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        /* Smaller shadow for the album art */
+        flex-shrink: 0;
+        /* Prevent shrinking */
+    }
+
+    /* Song details for mobile (will be inside #daily-song .daily-song-content) */
+    #daily-song .song-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+        /* Allow details to take up space */
+        min-width: 0;
+        /* Allow text truncation */
+        transition: opacity 0.3s ease-out, width 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
+        /* Smooth transition for all properties */
+    }
+
+    #daily-song .song-details h3,
+    #daily-song .song-details p {
+        white-space: nowrap;
+        /* Keep text on a single line */
+        margin: 0;
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch;
+        /* For smoother scrolling on iOS */
+    }
+
+    #daily-song .song-details h3 {
+        font-size: 1.1em;
+        /* Smaller font for song title */
+    }
+
+    #daily-song .song-details p {
+        font-size: 0.9em;
+        /* Smaller font for artist name */
+    }
+
+    /* When collapsed, hide details (opacity 0) */
+    #daily-song.collapsed .song-details {
+        opacity: 0;
+        /* Hide text */
+        pointer-events: none;
+        /* Prevent interaction when hidden */
+        width: 0;
+        /* Collapse width */
+        padding: 0;
+        /* Remove padding */
+        margin: 0;
+        /* Remove margin */
+        overflow: hidden;
+        /* Ensure text is truly hidden */
+    }
+
+    /* Daily song content for mobile */
+    #daily-song .daily-song-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
         width: 100%;
+        /* Ensure content takes full width of its container */
         height: 100%;
-        border: 2px solid var(--surface-color);
+        /* No transform needed here, as parent handles width changes */
+        flex-grow: 1;
+        /* Allow it to grow in expanded state */
+    }
+
+    #daily-song.expanded .daily-song-content {
+        flex-direction: row;
+        /* Horizontal layout for expanded content */
+    }
+
+    #daily-song.collapsed .daily-song-content {
+        flex-direction: row;
+        /* Keep horizontal layout for collapsed content */
+        justify-content: center;
+        /* Center the single item (album art) */
+        gap: 0;
+        /* Remove gap when only album art is visible */
     }
 
     #daily-song .daily-song-link {
-        display: block;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
         width: 100%;
         height: 100%;
     }
@@ -1462,5 +1582,133 @@ section.privacy-policy-container td {
         min-width: 100px;
         font-size: 0.97em;
         padding: 8px 4px;
+    }
+}
+
+/* Song of the Day styles */
+.daily-song-container {
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    overflow: hidden;
+    position: relative;
+    /* Needed for positioning elements within */
+}
+
+.daily-song-container.expanded {
+    max-height: 500px;
+    /* Adjust as needed to fit content */
+    opacity: 1;
+}
+
+.daily-song-container.collapsed {
+    max-height: 100px;
+    /* Only show cover */
+    opacity: 1;
+}
+
+.daily-song-container h2 {
+    transition: opacity 0.3s ease-out;
+}
+
+.daily-song-container.collapsed h2 {
+    opacity: 0;
+    /* Hide title when collapsed */
+    position: absolute;
+    top: -9999px;
+    /* Move out of sight */
+}
+
+.daily-song-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.daily-song-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Space between image and text */
+    transition: transform 0.3s ease-out;
+}
+
+.daily-song-container.collapsed .daily-song-content {
+    transform: translateX(0);
+    /* Ensure it stays in place when collapsed */
+    justify-content: center;
+    /* Center the image when collapsed */
+    width: 100%;
+}
+
+.album-art {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* Make it round */
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: spin 10s linear infinite;
+    /* Spinning animation */
+    transition: width 0.3s ease-out, height 0.3s ease-out;
+}
+
+.daily-song-container.collapsed .album-art {
+    width: 80px;
+    height: 80px;
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.daily-song-container.collapsed .song-details {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Move out of view when collapsed */
+    pointer-events: none;
+    /* Prevent interaction when hidden */
+    position: absolute;
+    left: -9999px;
+    /* Move off-screen */
+}
+
+/* Keyframe for spinning animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .daily-song-container.expanded {
+        max-height: 400px;
+        /* Adjust for smaller screens */
+    }
+
+    .album-art {
+        width: 120px;
+        height: 120px;
+    }
+
+    .daily-song-container.collapsed .album-art {
+        width: 70px;
+        height: 70px;
+    }
+
+    .daily-song-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .daily-song-container.collapsed .daily-song-content {
+        flex-direction: row;
+        justify-content: center;
     }
 }
