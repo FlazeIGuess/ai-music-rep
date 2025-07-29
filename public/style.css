@@ -260,16 +260,31 @@ section:hover {
     object-fit: cover;
 }
 
+#daily-song .song-details h3,
+#daily-song .song-details p {
+    white-space: nowrap;
+    margin: 0;
+    overflow: hidden;
+    /* The h3/p element acts as the clipping mask */
+}
+
 #daily-song .song-details h3 {
-    margin: 0 0 5px 0;
+    margin-bottom: 5px;
     font-size: 1.2em;
     border: none;
     padding: 0;
 }
 
 #daily-song .song-details p {
-    margin: 0;
     color: var(--text-secondary-color);
+}
+
+/* The .marquee-content span is what gets animated */
+#daily-song .song-details .marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    /* Push text to start off-screen right */
+    animation: marquee 15s linear infinite;
 }
 
 /* --- Sticky Daily Song for Desktop --- */
@@ -361,6 +376,8 @@ section:hover {
         /* No padding when collapsed */
         justify-content: center;
         /* Center the single item (album art) */
+        align-items: center;
+        /* Vertically center the content */
     }
 
     /* Hide title always on mobile */
@@ -368,15 +385,13 @@ section:hover {
         display: none;
     }
 
-    /* Album art styles for mobile, always round and spinning */
+    /* Album art styles for mobile */
     #daily-song .album-art {
         width: 60px;
         /* Default size for mobile, expanded and collapsed */
         height: 60px;
-        border-radius: 50%;
-        /* Make it round on mobile */
-        animation: spin 10s linear infinite;
-        /* Spinning animation */
+        border-radius: 8px;
+        /* Make it square */
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         /* Smaller shadow for the album art */
         flex-shrink: 0;
@@ -391,20 +406,11 @@ section:hover {
         flex-grow: 1;
         /* Allow details to take up space */
         min-width: 0;
-        /* Allow text truncation */
+        /* Crucial for flexbox truncation */
+        overflow: hidden;
+        /* Hide the overflowing text */
         transition: opacity 0.3s ease-out, width 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
         /* Smooth transition for all properties */
-    }
-
-    #daily-song .song-details h3,
-    #daily-song .song-details p {
-        white-space: nowrap;
-        /* Keep text on a single line */
-        margin: 0;
-        overflow-x: auto;
-        /* Enable horizontal scrolling */
-        -webkit-overflow-scrolling: touch;
-        /* For smoother scrolling on iOS */
     }
 
     #daily-song .song-details h3 {
@@ -444,6 +450,8 @@ section:hover {
         /* No transform needed here, as parent handles width changes */
         flex-grow: 1;
         /* Allow it to grow in expanded state */
+        transition: all 0.3s ease-out;
+        /* Synchronize transition */
     }
 
     #daily-song.expanded .daily-song-content {
@@ -456,6 +464,8 @@ section:hover {
         /* Keep horizontal layout for collapsed content */
         justify-content: center;
         /* Center the single item (album art) */
+        align-items: center;
+        /* Vertically center the album art */
         gap: 0;
         /* Remove gap when only album art is visible */
     }
@@ -1643,12 +1653,10 @@ section.privacy-policy-container td {
 .album-art {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    /* Make it round */
+    border-radius: 8px;
+    /* Make it square */
     object-fit: cover;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    animation: spin 10s linear infinite;
-    /* Spinning animation */
     transition: width 0.3s ease-out, height 0.3s ease-out;
 }
 
@@ -1682,6 +1690,17 @@ section.privacy-policy-container td {
 
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* Keyframe for marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
     }
 }
 
