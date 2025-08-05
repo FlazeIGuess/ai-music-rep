@@ -1,3 +1,6 @@
+let allSubmissions = [];
+let allOfficialArtists = [];
+
 document.addEventListener('DOMContentLoaded', () => {
     // Check for auth token on page load
     const token = localStorage.getItem('admin_auth_token');
@@ -6,10 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/admin-login.html';
         return;
     }
-
-    // Cache for search functionality
-    let allSubmissions = [];
-    let allOfficialArtists = [];
 
     // If token exists, load the data
     loadSubmissions();
