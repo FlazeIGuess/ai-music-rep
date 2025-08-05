@@ -131,10 +131,14 @@ export function getValidAccessToken() {
  * sets the status to indicate that the application is ready.
  */
 export async function onLoginSuccess() {
-    const browserBox = document.getElementById('browser-mode-box');
+    // Hide the entire connection box which contains both browser and desktop options
+    const connectionContainer = document.getElementById('connection-container');
+    if (connectionContainer) connectionContainer.style.display = 'none';
+
+    // Show the new, unified monitoring section
     const monitoringSection = document.getElementById('monitoring-section');
-    if (browserBox) browserBox.style.display = 'none';
-    if (monitoringSection) monitoringSection.style.display = 'block';
+    if (monitoringSection) monitoringSection.style.display = 'flex'; // Use flex for better alignment
+
     updateStatus('Ready to start monitoring.');
 }
 
@@ -182,10 +186,15 @@ export function handleLogout() {
     state.accessToken = null;
     state.isMonitoring = false;
     clearInterval(state.monitoringInterval);
-    const browserBox = document.getElementById('browser-mode-box');
+
+    // Hide the monitoring section
     const monitoringSection = document.getElementById('monitoring-section');
-    if (browserBox) browserBox.style.display = 'block';
     if (monitoringSection) monitoringSection.style.display = 'none';
+
+    // Show the connection container again
+    const connectionContainer = document.getElementById('connection-container');
+    if (connectionContainer) connectionContainer.style.display = 'block';
+
     updateStatus('Logged out.');
 }
 
@@ -204,10 +213,15 @@ export function handleTokenExpiration(reason) {
     clearInterval(state.monitoringInterval);
     const message = reason || 'Session expired. Please reconnect to Spotify.';
     updateStatus(message);
-    const browserBox = document.getElementById('browser-mode-box');
+
+    // Hide the monitoring section
     const monitoringSection = document.getElementById('monitoring-section');
-    if (browserBox) browserBox.style.display = 'block';
     if (monitoringSection) monitoringSection.style.display = 'none';
+
+    // Show the connection container again
+    const connectionContainer = document.getElementById('connection-container');
+    if (connectionContainer) connectionContainer.style.display = 'block';
+
     const btn = document.getElementById('toggle-monitoring');
     if (btn) {
         btn.textContent = 'Start Monitoring';

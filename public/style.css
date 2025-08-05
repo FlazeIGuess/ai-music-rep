@@ -480,19 +480,27 @@ section:hover {
     }
 }
 
+.social-toggle-btn {
+    display: none;
+}
+
 /* --- Mobile-only Social Links Styling --- */
 @media (max-width: 1023px) {
     #social-links {
         position: fixed;
-        bottom: 15px;
-        left: 15px;
+        bottom: 105px;
+        /* Positioned above the collapsed song player (80px height + 15px bottom + 15px gap) */
+        right: 15px;
+        /* Corrected position to the right */
         z-index: 1000;
         background: none;
         border: none;
         padding: 0;
         box-shadow: none;
         margin: 0;
-        width: auto;
+        width: 80px;
+
+        /* Match collapsed song of the day width */
     }
 
     #social-links h2 {
@@ -500,27 +508,83 @@ section:hover {
     }
 
     .social-buttons {
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
+        /* Vertical alignment */
         gap: 10px;
+        align-items: center;
+        /* Center buttons horizontally */
+        background-color: var(--surface-color);
+        padding: 10px;
+        border-radius: 12px;
+        margin-top: 5px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease-in-out;
+    }
+
+    #social-links.collapsed .social-buttons {
+        display: none;
+    }
+
+    .social-toggle-btn {
+        display: block;
+        /* Make it visible only on mobile */
+        width: 100%;
+        background-color: var(--surface-color);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        padding: 5px;
+
+        /* Reduced margin */
+    }
+
+    .social-toggle-btn:hover,
+    .social-toggle-btn:active {
+        background-color: var(--surface-color) !important;
+        /* Prevent color change */
+        transform: none !important;
+        /* Prevent scaling */
+    }
+
+    .social-toggle-btn i {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #social-links:not(.collapsed) .social-toggle-btn i {
+        transform: rotate(180deg);
+        /* Corrected arrow direction */
     }
 
     .social-button {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         padding: 0;
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        border: 1px solid var(--surface-color);
-        font-size: 0;
-        /* Hide text node */
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        /* No background color */
+        color: var(--text-secondary-color);
+        /* Make the icon visible */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-button:hover {
+        color: var(--primary-hover);
+        /* Add hover effect */
     }
 
     .social-button .fab {
         margin: 0;
-        font-size: 1.8em;
-        /* Reset font-size for icon */
+        font-size: 2.2em;
+        /* Increase icon size */
     }
 }
+
 
 h1,
 h2 {
@@ -726,7 +790,8 @@ input:focus {
 }
 
 #logout-btn {
-    margin-top: 15px;
+    width: 100%;
+    /* Make logout button full width */
 }
 
 #status {
@@ -1730,4 +1795,35 @@ section.privacy-policy-container td {
         flex-direction: row;
         justify-content: center;
     }
+}
+
+/* New styles for the player control panel */
+/* --- Logged-in Monitoring Section --- */
+#monitoring-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Space between elements */
+}
+
+#monitoring-section .button-monitor,
+#monitoring-section .button-danger {
+    width: 100%;
+    margin: 0;
+    /* Reset margin */
+}
+
+#monitoring-section #player-status {
+    margin: 0;
+    /* Reset margin */
+}
+
+#monitoring-section #desktop-mode-box {
+    margin-top: 10px;
+    /* Add some space above the desktop box */
+}
+
+#monitoring-section #script-guide {
+    margin-top: 0;
+    /* Reset margin */
 }

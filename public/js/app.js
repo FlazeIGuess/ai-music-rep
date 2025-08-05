@@ -6,7 +6,7 @@
 // saving of the user's Spotify Client ID.  On DOMContentLoaded
 // it calls the initialization routine to kick things off.
 
-import { redirectToSpotify, handlePageLoad, downloadPersonalizedScript, handleLogout } from '../auth.js';
+import { redirectToSpotify, handlePageLoad, downloadPersonalizedScript, handleLogout } from './auth.js';
 import { initState, saveClientId as saveClientIdInState, clearClientId as clearClientIdInState } from './state-manager.js';
 import { toggleMonitoring } from './monitor.js';
 

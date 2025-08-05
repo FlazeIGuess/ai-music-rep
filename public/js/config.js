@@ -12,7 +12,7 @@
 function getRedirectUri() {
     if (window.location.hostname === 'localhost') {
 
-        return `${window.location.protocol}//localhost:${window.location.port}/`;
+        return `${window.location.protocol}//127.0.0.1:${window.location.port}/`;
 
     } else if (window.location.hostname === '127.0.0.1') {
 

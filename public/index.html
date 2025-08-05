@@ -70,7 +70,10 @@
             <p class="subtitle">This is a community driven project, everyone can contribute to it!</p>
         </header>
 
-        <section id="social-links">
+        <section id="social-links" class"">
+            <button id="toggle-social-links" class="social-toggle-btn" aria-label="Toggle social links">
+                <i class="fas fa-chevron-up"></i>
+            </button>
             <h2>Community</h2>
             <div class="social-buttons">
                 <a href="https://github.com/FlazeIGuess/ai-music-rep" target="_blank" rel="noopener noreferrer"
@@ -162,61 +165,66 @@
                                 <button id="connect-spotify" disabled><i class="fab fa-spotify"></i> Connect
                                     Spotify</button>
                             </div>
-                            <div class="connection-method" id="desktop-mode-box">
-                                <h4>Desktop App (Beta)</h4>
-                                <p>Run a lightweight script in the background on your PC/Mac. Most reliable.</p>
-                                <button id="download-script-btn" disabled><i class="fas fa-download"></i> Download
-                                    Script</button>
-                            </div>
                         </div>
-                        <details class="advanced-guide" id="script-guide">
-                            <summary>How to use the Desktop App</summary>
-                            <div class="guide-content">
-                                <p>The script runs in the background on your PC/Mac and is the most reliable way to use
-                                    the Auto
-                                    Skipper.</p>
-                                <ol>
-                                    <li><strong>Install Python:</strong> If you don't have it, install Python from <a
-                                            href="https://www.python.org/downloads/" target="_blank">python.org</a>.
-                                        Make sure to check
-                                        "Add Python to PATH" during installation.</li>
-                                    <li><strong>Install Libraries:</strong> Open a terminal (Command Prompt or
-                                        PowerShell on
-                                        Windows, Terminal on Mac) and run this command:
-                                        <br><code>pip install spotipy requests</code>
-                                    </li>
-                                    <li><strong>Run the Script:</strong> Save the downloaded <code>watcher.py</code>
-                                        file to a
-                                        folder. Open a terminal in that folder and run:
-                                        <br><code>python watcher.py</code>
-                                    </li>
-                                    <li><strong>First Login:</strong> A browser window will open for you to log in to
-                                        Spotify.
-                                        After you approve, you can close the window.</li>
-                                    <li><strong>Autostart (Optional on Windows):</strong> To make the script run
-                                        automatically
-                                        when your PC starts, press <code>Win + R</code>, type
-                                        <code>shell:startup</code>, and press
-                                        Enter. Place a shortcut to the <code>watcher.py</code> file in this folder.
-                                    </li>
-                                </ol>
-                            </div>
-                        </details>
                     </div>
                 </div>
 
                 <p class="consent-notice">By connecting or downloading, you agree to the use of necessary local
                     storage/files to keep you logged in.</p>
 
+                <!-- This section is now the main container for the logged-in view -->
                 <div id="monitoring-section" style="display:none;">
                     <button id="toggle-monitoring" class="button-monitor"><i class="fas fa-play"></i> Start
                         Skipper</button>
                     <div id="player-status">
                         <p id="status">Status: Idle</p>
-                        <p><strong><i class="fas fa-music"></i> Now Playing:</strong> <span
-                                id="current-track">None</span></p>
+                        <p id="current-track"><strong><i class="fas fa-music"></i> Now Playing:</strong>
+                            <span>None</span>
+                        </p>
                     </div>
-                    <button id="logout-btn" class="button-danger"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    <button id="logout-btn" class="button-danger"><i class="fas fa-sign-out-alt"></i>
+                        Logout</button>
+
+                    <div class="connection-method" id="desktop-mode-box">
+                        <h4>Desktop App (Beta)</h4>
+                        <p>Run a lightweight script in the background on your PC/Mac. Most reliable.</p>
+                        <button id="download-script-btn" disabled><i class="fas fa-download"></i> Download
+                            Script</button>
+                    </div>
+
+                    <details class="advanced-guide" id="script-guide">
+                        <summary>How to use the Desktop App</summary>
+                        <div class="guide-content">
+                            <p>The script runs in the background on your PC/Mac and is the most reliable way to use
+                                the Auto
+                                Skipper.</p>
+                            <ol>
+                                <li><strong>Install Python:</strong> If you don't have it, install Python from <a
+                                        href="https://www.python.org/downloads/" target="_blank">python.org</a>.
+                                    Make sure to check
+                                    "Add Python to PATH" during installation.</li>
+                                <li><strong>Install Libraries:</strong> Open a terminal (Command Prompt or
+                                    PowerShell on
+                                    Windows, Terminal on Mac) and run this command:
+                                    <br><code>pip install spotipy requests</code>
+                                </li>
+                                <li><strong>Run the Script:</strong> Save the downloaded <code>watcher.py</code>
+                                    file to a
+                                    folder. Open a terminal in that folder and run:
+                                    <br><code>python watcher.py</code>
+                                </li>
+                                <li><strong>First Login:</strong> A browser window will open for you to log in to
+                                    Spotify.
+                                    After you approve, you can close the window.</li>
+                                <li><strong>Autostart (Optional on Windows):</strong> To make the script run
+                                    automatically
+                                    when your PC starts, press <code>Win + R</code>, type
+                                    <code>shell:startup</code>, and press
+                                    Enter. Place a shortcut to the <code>watcher.py</code> file in this folder.
+                                </li>
+                            </ol>
+                        </div>
+                    </details>
                 </div>
             </section>
 
@@ -331,6 +339,7 @@
             </p>
         </footer>
     </div>
+    <script src="/js/ui-interactions.js"></script>
 </body>
 
 </html>
