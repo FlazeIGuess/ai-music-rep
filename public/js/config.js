@@ -10,9 +10,14 @@
  * @returns {string} The appropriate redirect URI.
  */
 function getRedirectUri() {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        // Always use localhost for local development to ensure consistency
+    if (window.location.hostname === 'localhost') {
+
         return `${window.location.protocol}//localhost:${window.location.port}/`;
+
+    } else if (window.location.hostname === '127.0.0.1') {
+
+        return `${window.location.protocol}//127.0.0.1:${window.location.port}/`;
+
     } else {
         // Use the production URL for the live site
         return 'https://ai-musician-list.tanzstoff.de/';

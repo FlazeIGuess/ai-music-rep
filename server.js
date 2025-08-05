@@ -265,7 +265,7 @@ async function startServer() {
 
         // Start the server if the connection is successful
         app.listen(port, () => {
-            console.log(`🚀 Server listening at http://localhost:${port}`);
+            console.log(`🚀 Server listening at http://127.0.0.1:${port}`);
         });
     } catch (error) {
         console.error('❌ Could not connect to the database.', error);
