@@ -6,8 +6,9 @@
 // automatically skipped.  The monitoring loop can be started
 // or stopped by toggling a button in the UI.
 
-import { state, updateStatus } from './state.js';
+import { state } from './state.js';
 import { getValidAccessToken } from './auth.js';
+import { updateStatus } from './utils.js';
 
 let monitorInterval = null;
 let lastTrackId = null;

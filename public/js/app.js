@@ -6,8 +6,9 @@
 // saving of the user's Spotify Client ID.  On DOMContentLoaded
 // it calls the initialization routine to kick things off.
 
-import { redirectToSpotify, handlePageLoad, downloadPersonalizedScript, handleLogout } from './auth.js';
+import { redirectToSpotify, handlePageLoad, downloadPersonalizedScript, handleLogout } from '../auth.js';
 import { initState, saveClientId as saveClientIdInState, clearClientId as clearClientIdInState } from './state-manager.js';
+import { toggleMonitoring } from './monitor.js';
 
 /**
  * Initializes functionalities that require user consent (e.g., for localStorage).
@@ -41,6 +42,9 @@ export function initializeApp() {
 
   const clearClientBtn = document.getElementById('clear-client-id-btn');
   if (clearClientBtn) clearClientBtn.addEventListener('click', handleClearClientId);
+
+  const toggleMonitoringBtn = document.getElementById('toggle-monitoring');
+  if (toggleMonitoringBtn) toggleMonitoringBtn.addEventListener('click', toggleMonitoring);
 
   // --- DYNAMIC CLIENT ID HANDLING ---
   const userClientId = localStorage.getItem('user_spotify_client_id') || null;

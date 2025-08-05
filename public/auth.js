@@ -5,10 +5,10 @@
 // resulting access token, updates the UI when the user logs in or
 // out, and provides helpers to handle session expiration.
 
-import { REDIRECT_URI, API_BASE } from './config.js';
-import { state } from './state.js';
-import { generateRandomString, generateCodeChallenge } from './pkce.js';
-import { updateStatus } from './utils.js';
+import { REDIRECT_URI } from './js/config.js';
+import { state } from './js/state.js';
+import { generateRandomString, generateCodeChallenge } from './js/pkce.js';
+import { updateStatus } from './js/utils.js';
 
 /**
  * Perform initial authentication checks on page load.  This function
@@ -32,14 +32,17 @@ export async function handlePageLoad() {
       return;
     }
     try {
-      const response = await fetch(`${API_BASE}/exchange-token`, {
+      const response = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          grant_type: 'authorization_code',
           code: code,
-          code_verifier: codeVerifier,
-          client_id: state.userClientId, // always use the user's client ID
-          redirect_uri: REDIRECT_URI // Send the dynamic redirect_uri to the backend
+          redirect_uri: REDIRECT_URI,
+          client_id: state.userClientId,
+          code_verifier: codeVerifier
         })
       });
       if (!response.ok) {
@@ -53,7 +56,6 @@ export async function handlePageLoad() {
       localStorage.setItem('spotify_token_expiry', expiryTime);
       localStorage.removeItem('code_verifier'); // clean up
       history.pushState('', document.title, window.location.pathname); // clean the URL
-      console.log('New token received and stored via PKCE flow.');
       await onLoginSuccess();
       return;
     } catch (err) {
@@ -69,10 +71,8 @@ export async function handlePageLoad() {
   const tokenExpiry = localStorage.getItem('spotify_token_expiry');
   if (storedToken && tokenExpiry && Date.now() < tokenExpiry) {
     state.accessToken = storedToken;
-    console.log('Found valid token in localStorage.');
     await onLoginSuccess();
   } else {
-    console.log('No valid token found. User needs to connect.');
     localStorage.removeItem('spotify_access_token');
     localStorage.removeItem('spotify_token_expiry');
   }
@@ -101,7 +101,6 @@ export async function redirectToSpotify() {
     code_challenge_method: 'S256',
     code_challenge: codeChallenge
   });
-  console.log('Redirecting to Spotify for PKCE flow...');
   window.location = 'https://accounts.spotify.com/authorize?' + args;
 }
 
